@@ -53,5 +53,31 @@ def save_teacher():
    insert_teacher(teacher_name,phone_number,address,teacher_education)
    return render_template("add_teacher.html")
 
+@app.route('/api/save_class',methods=['post'])
+def save_class():
+   class_name = request.form.get('class_name')  # access the data inside
+   room_number = request.form.get('room_number')
+   floor_number = request.form.get('floor_number')
+   print(class_name)
+   print(room_number)
+   print(floor_number)
+   from database.add_class import insert_class
+   insert_class(class_name,room_number,floor_number)
+   return render_template("add_class.html")
+
+@app.route('/api/save_attendance',methods=['post'])
+def save_attendance():
+   student_name = request.form.get('student_name')  # access the data inside
+   class_name = request.form.get('class_name')
+   present_or_absent= request.form.get('present_or_absent')
+   date = request.form.get('date')
+   print(student_name)
+   print(class_name)
+   print(present_or_absent)
+   print(date)
+   from database.attendance import insert_attendance
+   insert_attendance(student_name,class_name,present_or_absent,date)
+   return render_template("attendance.html")
+
 if __name__ == '__main__':
    app.run(debug=True)
