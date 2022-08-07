@@ -29,3 +29,4 @@ tweepy
 urllib3
 Werkzeug
 wsproto
+gunicorn
