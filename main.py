@@ -3,11 +3,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def login():
-   return render_template("login.html")
+ return render_template("login.html")
 
 @app.route('/add_student')
 def add_student():
-   return render_template("add_student.html")
+ return render_template("add_student.html")
 
 @app.route('/add_teacher')
 def add_teacher():
@@ -19,11 +19,39 @@ def add_class():
 
 @app.route('/attendance_sheet')
 def attendance_sheet():
-   return render_template("attendance.html")
+    return render_template("attendance.html")
+
+@app.route('/add_user')
+def user():
+   return render_template("add_user.html")
 
 @app.route('/reports')
 def reports():
-   return render_template("reports.html")
+   from database.attendance import view_attendance
+   attendance_dict=view_attendance()
+   print(attendance_dict)
+   return render_template("reports.html",attendance_dict=attendance_dict)
+
+@app.route('/student_reports')
+def student_reports():
+   from database.student import view_student
+   student_dict=view_student()
+   print(student_dict)
+   return render_template("student_reports.html",student_dict=student_dict)
+
+@app.route('/teacher_reports')
+def teacher_reports():
+   from database.teacher import view_teacher
+   teacher_dict=view_teacher()
+   print(teacher_dict)
+   return render_template("teacher_reports.html",teacher_dict=teacher_dict)
+
+@app.route('/class_reports')
+def class_reports():
+   from database.add_class import view_class
+   class_dict=view_class()
+   print(class_dict)
+   return render_template("class_reports.html",class_dict=class_dict)
 
 @app.route('/api/save_student',methods=['post'])
 def save_student():
@@ -79,5 +107,15 @@ def save_attendance():
    insert_attendance(student_name,class_name,present_or_absent,date)
    return render_template("attendance.html")
 
+@app.route('/api/save_user',methods=['post'])
+def save_user():
+   username = request.form.get('username')  # access the data inside
+   password = request.form.get('password')
+   print(username)
+   print(password)
+   from database.add_user import insert_user
+   insert_user(username,password)
+   return render_template("add_user.html")
+
 if __name__ == '__main__':
-   app.run(debug=True)
+      app.run(debug=True)

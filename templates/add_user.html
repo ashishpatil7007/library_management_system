@@ -29,21 +29,12 @@
           <a class="nav-link" href="/attendance_sheet">Attendance</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/add_user">User</a>
+          <a class="nav-link active" href="/add_user">user</a>
         </li>
 
           <li class="nav-item">
-          <a class="nav-link active" href="/reports">Attendance Reports</a>
+          <a class="nav-link" href="/reports">Reports</a>
         </li>
-
-          <li class="nav-item">
-          <a class="nav-link" href="/student_reports">Student Reports</a>
-        </li>
-
-          <li class="nav-item">
-          <a class="nav-link" href="/teacher_reports">Teacher Reports</a>
-        </li>
-
 
       </ul>
 
@@ -52,42 +43,28 @@
     </div>
   </div>
 </nav>
-
 <div class="container">
   <div class="row">
     <div class="col">
 `
     </div>
-    <div class="col-10">
-      <div class="card" style="margin-top:80px" >
+    <div class="col">
+      <div class="card" style="margin-top:50px" >
   <div class="card-header">
-    Reports
+    Add User
   </div>
   <div class="card-body">
-
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Student Name</th>
-      <th scope="col">Class Name</th>
-      <th scope="col">Present</th>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-   {% for attendance in attendance_dict %}
-   <tr>
-     <td>{{ attendance.STUDENT_NAME}}</td>
-     <td>{{ attendance.CLASS_NAME}}</td>
-     <td>{{ attendance.PRESENT}}</td>
-     <td>{{ attendance.ATTENDANCE_DATE}}</td>
-   </tr>
-
-  {% endfor %}
-
-  </tbody>
-</table>
-   </div>
+      <form action="/api/save_user" method="post">
+    <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">user_name</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Please enter username name" name="username">
+</div>
+      <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Password</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Password" name="password">
+</div>
+      <button type="submit" class="btn btn-primary">Save</button></form>
+  </div>
 </div>
 
     </div>
@@ -96,7 +73,5 @@
     </div>
   </div>
 </div>
-
-
 </body>
 </html>

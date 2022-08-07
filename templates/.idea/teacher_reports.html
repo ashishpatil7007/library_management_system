@@ -33,15 +33,10 @@
         </li>
 
           <li class="nav-item">
-          <a class="nav-link active" href="/reports">Attendance Reports</a>
+          <a class="nav-link" href="/reports">Attendance Reports</a>
         </li>
-
-          <li class="nav-item">
-          <a class="nav-link" href="/student_reports">Student Reports</a>
-        </li>
-
-          <li class="nav-item">
-          <a class="nav-link" href="/teacher_reports">Teacher Reports</a>
+         <li class="nav-item">
+          <a class="nav-link active" href="/student_reports">Student Reports</a>
         </li>
 
 
@@ -68,19 +63,19 @@
     <table class="table">
   <thead>
     <tr>
-      <th scope="col">Student Name</th>
-      <th scope="col">Class Name</th>
-      <th scope="col">Present</th>
-      <th scope="col">Date</th>
+      <th scope="col">Teacher Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Address</th>
+      <th scope="col">Parent Phone Number</th>
     </tr>
   </thead>
   <tbody>
-   {% for attendance in attendance_dict %}
+   {% for attendance in student_dict %}
    <tr>
-     <td>{{ attendance.STUDENT_NAME}}</td>
-     <td>{{ attendance.CLASS_NAME}}</td>
-     <td>{{ attendance.PRESENT}}</td>
-     <td>{{ attendance.ATTENDANCE_DATE}}</td>
+     <td>{{ attendance.TEACHER_NAME}}</td>
+     <td>{{ attendance.PHONE_NUMBER}}</td>
+     <td>{{ attendance.ADDRESS}}</td>
+     <td>{{ attendance.TEACHER_EDUCATION}}</td>
    </tr>
 
   {% endfor %}
@@ -96,7 +91,6 @@
     </div>
   </div>
 </div>
-
 
 </body>
 </html>
