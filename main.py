@@ -1,4 +1,5 @@
 from flask import Flask,render_template,request
+import os
 app = Flask(__name__)
 
 @app.route('/')
@@ -118,4 +119,5 @@ def save_user():
    return render_template("add_user.html")
 
 if __name__ == '__main__':
-      app.run(debug=False,host="0.0.0.0",port=5000)
+      port = os.environ['PORT']
+      app.run(debug=False,host="0.0.0.0",port=port)
