@@ -119,5 +119,8 @@ def save_user():
    return render_template("add_user.html")
 
 if __name__ == '__main__':
+   if 'PORT' in os.environ:
       port = os.environ['PORT']
-      app.run(debug=False,host="0.0.0.0",port=port)
+   else:
+      port= 5000
+   app.run(debug=False,host="0.0.0.0",port=port)
